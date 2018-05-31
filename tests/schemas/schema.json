@@ -1,0 +1,15 @@
+{
+    "type":"object",
+     "properties":{
+           "price":{
+                    "type":"number"
+           },
+           "foo":{
+            "type":"string"
+            },
+           "name" :{
+                    "type":"string"
+           }
+           
+       }
+  }
