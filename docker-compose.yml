@@ -3,3 +3,8 @@ services:
   app:
     image: $docker_registry/$docker_image$docker_image_label
     build: .
+  tests:
+    extends: app
+    volumes: 
+      - ./tests:/validator/tests
+    command: ["tests/service.yaml", "/openshift-schemas/v3.9.0/service.json"]
