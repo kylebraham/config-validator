@@ -1,0 +1,14 @@
+#!/bin/bash -xe
+
+declare -a arr=(master
+                v3.7.0
+                v3.9.0
+                )
+for version in "${arr[@]}"
+do
+    schema=https://raw.githubusercontent.com/openshift/origin/${version}/api/swagger-spec/openshift-openapi-spec.json
+
+    openapi2jsonschema -o "${version}" --kubernetes --stand-alone "${schema}"
+    # openapi2jsonschema -o "${version}-standalone-strict" --kubernetes --stand-alone --strict "${schema}"
+    # openapi2jsonschema -o "${version}-local" --kubernetes "${schema}"
+done
