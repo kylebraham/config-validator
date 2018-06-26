@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, json
+import sys, json, os
 from jsonschema import validate
 from ruamel.yaml import YAML
 
@@ -22,4 +22,8 @@ def load_schema (file_path):
             print(exc)
     return schema_data
 
-print (validate_config(sys.argv[1], sys.argv[2]))
+if sys.argv[1] and sys.argv[2]:
+    config = '/configs/' + sys.argv[1]
+    schema = '/schemas/' + sys.argv[2]
+
+    print (validate_config(config, schema))

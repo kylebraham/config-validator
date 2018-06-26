@@ -2,9 +2,14 @@ version: '2'
 services:
   app:
     image: $docker_registry/$docker_image$docker_image_label
-    build: .
-  tests:
+    build:
+      context: .
+      args:
+        SCHEMA_DIR: ./tests/schemas/
+        CONFIG_DIR: ./tests/configs/
+  validate-ex:
     extends: app
-    volumes: 
-      - ./tests:/validator/tests
-    command: ["tests/service.yaml", "/openshift-schemas/v3.9.0/service.json"]
+    volumes:
+      - ./tests/schemas:/schemas/
+      - ./tests/configs:/configs/
+    command:  ["doc.yaml", "schema.json"]   # ["<config_file>", "<schema_file>"] 

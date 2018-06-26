@@ -1,19 +1,30 @@
-FROM python:2.7 as builder
-ENV OPENSHIFT_SCHEMAS_DIR /openshift-schemas/
-COPY get-schemas $OPENSHIFT_SCHEMAS_DIR
-WORKDIR $OPENSHIFT_SCHEMAS_DIR
-RUN  pip install openapi2jsonschema && \
-    ./get-schemas
+# FROM python:3
+# ENV VALIDATOR_DIR /validator
+
+# RUN mkdir $VALIDATOR_DIR && \
+#     pip install ruamel.yaml jsonschema
+
+# ARG SCHEMA_DIR
+# ARG CONFIG_DIR
+
+# COPY ${CONFIG_DIR} /configs
+# COPY ${SCHEMA_DIR} /schemas
+# COPY config-validator.py $VALIDATOR_DIR
+# WORKDIR $VALIDATOR_DIR
+   
+# ENTRYPOINT ["./config-validator.py"]
+## CMD ["doc.yaml", "schema.json"]
 
 
 FROM python:3
-ENV VALIDATOR_DIR /validator/
-ENV OPENSHIFT_SCHEMAS_DIR /openshift-schemas/ 
-COPY --from=builder /openshift-schemas/ $OPENSHIFT_SCHEMAS_DIR
-COPY config-validator.py $VALIDATOR_DIR
-COPY tests $VALIDATOR_DIR/tests/
-WORKDIR $VALIDATOR_DIR
-RUN pip install ruamel.yaml jsonschema    
+RUN pip install ruamel.yaml jsonschema
 
+ARG SCHEMA_DIR
+ARG CONFIG_DIR
+
+COPY ${CONFIG_DIR} /configs
+COPY ${SCHEMA_DIR} /schemas
+COPY config-validator.py /
+   
 ENTRYPOINT ["./config-validator.py"]
-CMD ["tests/doc.yaml", "tests/schemas/schema.json"]
+# CMD ["doc.yaml", "schema.json"]
