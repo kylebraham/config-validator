@@ -12,4 +12,4 @@ services:
     volumes:
       - ./tests/schemas:/schemas/
       - ./tests/configs:/configs/
-    command:  ["doc.yaml", "schema.json"]   # ["<config_file>", "<schema_file>"] 
+    command:  ["--help"]   # ["--verbose" "<config_file>", "<schema_file>"] 
