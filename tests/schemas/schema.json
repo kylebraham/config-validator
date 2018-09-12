@@ -1,15 +1,47 @@
 {
-    "type":"object",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/product.schema.json",
+    "title": "Product",
+    "description": "A product in the catalog",
+    "type": "object",
      "properties":{
-           "price":{
-                    "type":"number"
-           },
-           "foo":{
-            "type":"string"
+
+           "productId":{
+                "type": "integer"
             },
-           "name" :{
-                    "type":"string"
-           }
-           
-       }
+
+           "productName":{
+                "type":"string"
+           },
+
+           "price":{
+                "type":"number",
+                "minimum": 0
+            },
+
+            "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "dimensions": {
+                "type": "object",
+                "properties": {
+                  "length": {
+                    "type": "number"
+                  },
+                  "width": {
+                    "type": "number"
+                  },
+                  "height": {
+                    "type": "number"
+                  }
+                },
+                "required": [ "length", "width", "height" ]
+              }
+       },
+       "required": [ "productId", "productName","price" ]
   }
