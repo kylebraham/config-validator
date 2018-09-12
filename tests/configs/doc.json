@@ -1,4 +1,11 @@
 {
-    "name":"bar",
-    "price": 4
+    "productName":"bar",
+    "price": 4,
+    "productId": 49,
+    "tags": ["foo", "bar", "baz"],
+    "dimensions":{
+        "length": 44,
+        "width": 4,
+        "height": 12
+    }
 }

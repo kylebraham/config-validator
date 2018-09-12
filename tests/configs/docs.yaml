@@ -1,0 +1,12 @@
+--- 
+name: Eggs
+price: 34.99
+--- 
+name: foo
+price: 34
+--- 
+name: bar
+price: 0
+--- 
+name: baz
+price: "0.0"
