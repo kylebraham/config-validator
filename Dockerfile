@@ -6,7 +6,7 @@ ARG CONFIG_DIR
 
 COPY ${CONFIG_DIR} /configs
 COPY ${SCHEMA_DIR} /schemas
-COPY config-validator.py /
+COPY validator.py /
    
 ENTRYPOINT ["./validator.py"]
 CMD ["--help]
