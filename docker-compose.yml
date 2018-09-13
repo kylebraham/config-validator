@@ -3,9 +3,7 @@ services:
   app:
     build:
       context: .
-      args:
-        SCHEMA_DIR: ./tests/schemas/
-        CONFIG_DIR: ./tests/configs/
+
   validate-ex:
     extends: app
     volumes:
